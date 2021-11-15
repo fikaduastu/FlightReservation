@@ -23,6 +23,22 @@ public class FlightOffering {
     @OneToMany(mappedBy = "flightOffering")
     private List<Ticket> tickets = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
 
+    @Column(name = "departureDate")
+    @Temporal(TemporalType.DATE)
+    private Date departureDate;
+
+    public void addTicket(Ticket ticket){
+        this.tickets.add(ticket);
+        ticket.setFlightOffering(this);
+    }
+
+    public void removeTicket(Ticket ticket){
+        tickets.remove(ticket);
+        ticket.setFlightOffering(null);
+    }
 
 }

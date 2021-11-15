@@ -31,7 +31,7 @@ public class Account {
     @JoinTable(name = "Account_Role")
     private List<Role> roles = new ArrayList<>();
 
-    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "account", cascade = CascadeType.PERSIST)
     private Person person;
 
 

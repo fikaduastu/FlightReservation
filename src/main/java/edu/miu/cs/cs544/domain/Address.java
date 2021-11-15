@@ -18,7 +18,7 @@ public class Address {
     @GeneratedValue
     private long id;
 
-    @Column(name = "steet", nullable = false)
+    @Column(name = "street", nullable = false)
     private String street;
 
     @Column(name = "city", nullable = false)

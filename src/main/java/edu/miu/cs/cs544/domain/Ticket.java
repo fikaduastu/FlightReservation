@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 
 @Entity
@@ -32,7 +33,5 @@ public class Ticket {
     @Column(name = "Code",length = 6, nullable = false)
     private String ticketCode;
 
-    @Temporal(TemporalType.DATE)
-    private LocalDate flightDate;
 
 }
