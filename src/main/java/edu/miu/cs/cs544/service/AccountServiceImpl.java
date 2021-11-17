@@ -32,10 +32,16 @@ public class AccountServiceImpl implements AccountService{
     private PersonRepository personRepository;
 
     @Override
-    public Account get(long id) {
+    public Account getAccount(Long id) {
         return accountRepository.findById(id).get();
     }
 
+
+//    @Override
+//    public Account update(Long id,Account account){
+//        Account account1 = getAccount(id);
+//        account1.getPerson(account.getPerson());
+//    }
 
 
     @Override
@@ -65,7 +71,12 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
             accountRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Account> getAllAccount() {
+        return accountRepository.findAll();
     }
 }

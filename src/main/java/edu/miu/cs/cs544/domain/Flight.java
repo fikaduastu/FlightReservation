@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "Flight")
+@ToString
 public class Flight {
 
     @Id
@@ -42,6 +44,6 @@ public class Flight {
     private Airport arrivalAirport;
 
     @ManyToOne
-    @JoinColumn(name = "airline_id")
+    //@JoinColumn(name = "airline_id")
     private Airline airline;
 }

@@ -16,7 +16,7 @@ public class Airport {
     @Id
     @Column(name = "id")
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column(name ="code", length = 3, nullable = false)
     private String code;
@@ -24,7 +24,7 @@ public class Airport {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 

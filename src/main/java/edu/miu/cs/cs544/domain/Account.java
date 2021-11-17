@@ -18,7 +18,7 @@ public class Account {
     @Id
     @Column(name ="id")
     @GeneratedValue
-    private long Id;
+    private Long Id;
 
 
     @Column(name ="username", nullable = false)

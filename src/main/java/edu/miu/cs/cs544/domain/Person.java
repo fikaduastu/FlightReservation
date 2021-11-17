@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,12 +17,13 @@ import java.util.List;
 @Setter
 @Getter
 @Table(name ="Person")
+@ToString
 public class Person {
 
     @Id
     @Column(name="id")
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column(name = "firstName", length = 100)
     private String firstName;
@@ -44,7 +46,17 @@ public class Person {
     @JoinColumn(name ="account_id")
     private Account account;
 
-    @OneToMany
-    @JoinTable(name = "Person_Reservation")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Reservation> reservations = new ArrayList<>();
+//
+//    public void addReservation(Reservation reservation){
+//        reservations.add(reservation);
+//        //sreturn reservations;
+//    }
+//
+//    public void setReservations1(Reservation reservations){
+//
+//            this.reservations.add(reservations);
+//
+//    }
 }

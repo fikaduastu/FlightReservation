@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,14 +20,17 @@ public class Reservation {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private long id;
+    private Long id;
 
 
     @Column(name = "code", nullable = false, length = 6)
     private String code;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reservation_id")
+    @JsonIgnore
+    private Person person;
 
-    @OneToMany
-    @JoinTable(name = "Reservation_Ticket")
+    @OneToMany(mappedBy = "reservation")
     private List<Ticket> tickets = new ArrayList<>();
 }

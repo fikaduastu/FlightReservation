@@ -7,12 +7,14 @@ import java.util.List;
 
 public interface ReservationService {
 
-        public List<Reservation> get(long person_id);
+//        public List<Reservation> get(Long person_id);
+//
+//        // this should be eager loading of reservation attributes
+//        public Reservation details(Long reservation_id);
 
-        // this should be eager loading of reservation attributes
-        public Reservation details(long reservation_id);
+        public Reservation make(Reservation reservation);
 
-        public Reservation make(List<FlightOffering> flightOfferings);
+        public void delete(Long reservation_id);
 
-        public void delete(long reservation_id);
+    List<Reservation> getReservationById(Long id);
 }

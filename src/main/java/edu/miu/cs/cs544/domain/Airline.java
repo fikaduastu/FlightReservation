@@ -31,6 +31,5 @@ public class Airline {
     @Column(name = "history")
     private String history;
 
-    @OneToMany(mappedBy = "airline")
-    private List<Flight> flights = new ArrayList<>();
+
 }

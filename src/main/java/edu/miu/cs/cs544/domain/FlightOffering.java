@@ -4,6 +4,7 @@ package edu.miu.cs.cs544.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.*;
@@ -13,6 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "FlightOffering")
+@ToString
 public class FlightOffering {
 
     @Id
@@ -20,25 +22,28 @@ public class FlightOffering {
     @Column(name = "id")
     private long id;
 
-    @OneToMany(mappedBy = "flightOffering")
-    private List<Ticket> tickets = new ArrayList<>();
-
     @OneToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
-    @Column(name = "departureDate")
+    @Column(name = "flightDate")
     @Temporal(TemporalType.DATE)
-    private Date departureDate;
+    private Date flightDate;
 
-    public void addTicket(Ticket ticket){
-        this.tickets.add(ticket);
-        ticket.setFlightOffering(this);
-    }
 
-    public void removeTicket(Ticket ticket){
-        tickets.remove(ticket);
-        ticket.setFlightOffering(null);
-    }
+    @OneToMany
+    @JoinTable(name = "FlightOffering_Table")
+    private List<Ticket> tickets = new ArrayList<>();
+
+
+//    public void addTicket(Ticket ticket){
+//        this.tickets.add(ticket);
+//        ticket.setFlightOffering(this);
+//    }
+//
+//    public void removeTicket(Ticket ticket){
+//        tickets.remove(ticket);
+//        ticket.setFlightOffering(null);
+//    }
 
 }

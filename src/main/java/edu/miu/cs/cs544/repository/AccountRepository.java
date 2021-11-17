@@ -10,4 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
 public interface AccountRepository extends JpaRepository<Account,Long> {
+
 }
