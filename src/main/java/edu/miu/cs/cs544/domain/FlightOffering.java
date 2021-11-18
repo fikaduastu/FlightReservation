@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class FlightOffering {
     @Column(name = "id")
     private long id;
 
+    @JsonIgnore
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "flight_id")
     private Flight flight;

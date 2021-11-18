@@ -33,7 +33,7 @@ public class AccountController {
 
     @GetMapping("/test")
     public String test(){
-        return "Account controller test!";
+        return "Get request test!";
     }
 
     @PostMapping("/testpost")
@@ -58,15 +58,10 @@ public class AccountController {
 
     @GetMapping("/{id}/getReservation")
     public ResponseEntity<List<Reservation>> getReservation(@PathVariable Long id){
-//        Account response = accountService.getAccount(id);
-//        Person entity = response.getPerson();
-//        System.out.println(entity);
-//
-//        //List<Reservation> reservationList = entity.getReservations();
-//        return ResponseEntity.ok(entity.getReservations());
 
         List<Reservation> reservations = reservationService.getReservationById(id);
         return ResponseEntity.ok(reservations);
+
     }
 
     @PostMapping("/{id}/makeReservation")
@@ -75,33 +70,32 @@ public class AccountController {
         Account response = accountService.getAccount(id);
         Person personEntity = response.getPerson();
 
+        List<FlightOffering> flightOfferingList = new ArrayList<>();
 
-
-    List<FlightOffering> flightOfferingList = new ArrayList<>();
-
-    for (Long flightNumber:flights.getFlightNumbers()){
-        flightOfferingList.add(flightOfferingService.findById(flightNumber));
-    }
-
-
-        List<Ticket> ticketList = new ArrayList<>();
-        for (FlightOffering flightOffering:flightOfferingList){
-            ticketList.add(ticketService.addTicket());
+        for (Long flightNumber:flights.getFlightNumbers()){
+            flightOfferingList.add(flightOfferingService.findById(flightNumber));
         }
 
-        for (Ticket ticket: ticketList){
-            System.out.println(ticket);
-        }
 
-        Reservation reservation = new Reservation();
+            List<Ticket> ticketList = new ArrayList<>();
+            for (FlightOffering flightOffering:flightOfferingList){
+                ticketList.add(ticketService.addTicket());
+            }
 
-        reservation.setPerson(personEntity);
-        reservation.setTickets(ticketList);
-        Reservation reservationEntity = reservationService.make(reservation);
+            for (Ticket ticket: ticketList){
+                System.out.println(ticket);
+            }
 
-        return ResponseEntity.ok(reservationEntity);
+            Reservation reservation = new Reservation();
+
+            reservation.setPerson(personEntity);
+            reservation.setTickets(ticketList);
+            Reservation reservationEntity = reservationService.make(reservation);
+
+            return ResponseEntity.ok(reservationEntity);
 
     }
+
 
     @GetMapping("/findAll")
     public ResponseEntity<List<Account>> getAll(){

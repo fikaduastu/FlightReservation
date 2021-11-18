@@ -38,6 +38,7 @@ public class Reservation {
     @Column(name ="status")
     private String status;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "reservations",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<FlightOffering> flightOfferings = new ArrayList<>();
 

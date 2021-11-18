@@ -9,6 +9,7 @@ import edu.miu.cs.cs544.repository.AddressRepository;
 import edu.miu.cs.cs544.repository.PersonRepository;
 import edu.miu.cs.cs544.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,6 +31,9 @@ public class AccountServiceImpl implements AccountService{
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Account getAccount(Long id) {
@@ -61,6 +65,7 @@ public class AccountServiceImpl implements AccountService{
 
 
         account.setRoles(roleEntity);
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
         Account acc = accountRepository.save(account);
         person.setAccount(acc);
         Person personEntity = personRepository.save(person);

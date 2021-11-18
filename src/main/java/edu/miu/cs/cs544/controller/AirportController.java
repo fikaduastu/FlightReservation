@@ -21,7 +21,7 @@ public class AirportController {
         this.airportService = airportService;
     }
 
-    @GetMapping("/find-all")
+    @GetMapping("/findAll")
 
     public ResponseEntity<List<Airport>> findAll() {
         List<Airport> airportList = airportService.findAll();
