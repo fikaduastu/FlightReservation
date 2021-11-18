@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
+
 
 @Transactional
 @Service
@@ -26,23 +25,13 @@ public class ReservationServiceImpl implements ReservationService{
     @Autowired
     private AccountRepository accountRepository;
 
-//    @Override
-//    public List<Reservation> get(Long person_id) {
-//
-//        return reservationRepository.getReservationsByPersonId(person_id);
-//    }
 
-//    @Override
-//    public Reservation details(Long reservation_id) {
-//        return reservationRepository.getReservationDetails(reservation_id);
-//    }
 
     @Override
     public Reservation make(Reservation reservation) {
 
         String code = getReservationCode();
         reservation.setCode(code);
-       // Reservation reservation1 = reservationRepository.save(reservation);
         return reservationRepository.save(reservation);
     }
 
@@ -72,12 +61,7 @@ public class ReservationServiceImpl implements ReservationService{
         return sb.toString();
     }
 
-    @Override
-    public void delete(Long reservation_id) {
 
-        reservationRepository.deleteById(reservation_id);
-
-    }
 
     @Override
     public List<Reservation> getReservationById(Long id) {
@@ -93,5 +77,24 @@ public class ReservationServiceImpl implements ReservationService{
         return reservationList;
 
 
+    }
+
+    @Override
+    public List<Reservation> cancelReservation(Long reservationId,Long id) {
+        reservationRepository.deleteById(reservationId);
+        return getReservationById(id);
+    }
+
+    @Override
+    public Reservation updateReservationStatus(Long reservationId) {
+        Reservation reservation = getReservationByReservationId(reservationId);
+        reservation.setStatus("CONFIRMED");
+        return reservationRepository.save(reservation);
+
+    }
+
+    @Override
+    public Reservation getReservationByReservationId(Long reservationId) {
+        return reservationRepository.findById(reservationId).get();
     }
 }

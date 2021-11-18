@@ -35,6 +35,9 @@ public class Reservation {
     @JoinTable(name = "Reservation_Ticket")
     private List<Ticket> tickets = new ArrayList<>();
 
+    @Column(name ="status")
+    private String status;
+
     @ManyToMany(mappedBy = "reservations",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<FlightOffering> flightOfferings = new ArrayList<>();
 

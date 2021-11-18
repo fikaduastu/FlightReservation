@@ -108,6 +108,18 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getAllAccount());
     }
 
+    @GetMapping("/{id}/cancelReservation/{reservationId}")
+    public ResponseEntity<List<Reservation>> cancelReservation(@PathVariable Long id,@PathVariable Long reservationId ){
 
+        List<Reservation> reservations = reservationService.cancelReservation(reservationId,id);
+        return ResponseEntity.ok(reservations);
+    }
+
+    @PutMapping("/{id}/updateReservationStatus/{reservationId}")
+    public ResponseEntity<Reservation> updateReservationStatus(@PathVariable Long id,@PathVariable Long reservationId ){
+
+        Reservation reservations = reservationService.updateReservationStatus(reservationId);
+        return ResponseEntity.ok(reservations);
+    }
 
 }
