@@ -81,14 +81,8 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public List<Reservation> getReservationById(Long id) {
-        List<Account> accounts = accountRepository.findAll();
-        Account acc = new Account();
-        for (Account account: accounts){
-            if (account.getId() == id)
-                acc = account;
-        }
-
-        Person person = acc.getPerson();
+        Account account = accountRepository.findById(id).get();
+        Person person = account.getPerson();
 
         List<Reservation> reservations = reservationRepository.findAll();
         List<Reservation> reservationList = new ArrayList<>();
@@ -97,16 +91,7 @@ public class ReservationServiceImpl implements ReservationService{
                 reservationList.add(reservation);
         }
         return reservationList;
-       /* List<Reservation> newReserve =  reservationRepository.findAll();
-        List<Reservation> copyReservation = new ArrayList<>();
 
-        for(Reservation reservation : newReserve){
-            if(reservation.getPerson().equals(accountRepository.findById(id))){
-                copyReservation.add(reservation);
-            }
-        }
-        return copyReservation;*/
-        // return reservationRepository.findAll().stream().filter(a-> a.getPerson().getId()== id).collect(Collectors.toList());
 
     }
 }

@@ -11,7 +11,7 @@ public interface FlightOfferingService {
 
     FlightOffering findById(Long flightOfferingId);
 
-    FlightOffering addFlightOffering(FlightOfferingDTO flightOffering);
+    FlightOffering addFlightOffering(FlightOffering flightOffering);
 
     FlightOffering update(FlightOffering flightOffering);
 

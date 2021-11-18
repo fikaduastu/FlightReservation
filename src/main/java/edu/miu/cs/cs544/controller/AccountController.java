@@ -86,7 +86,7 @@ public class AccountController {
 
         List<Ticket> ticketList = new ArrayList<>();
         for (FlightOffering flightOffering:flightOfferingList){
-            ticketList.add(ticketService.addTicket(flightOffering));
+            ticketList.add(ticketService.addTicket());
         }
 
         for (Ticket ticket: ticketList){
@@ -94,10 +94,12 @@ public class AccountController {
         }
 
         Reservation reservation = new Reservation();
+
+        reservation.setPerson(personEntity);
         reservation.setTickets(ticketList);
         Reservation reservationEntity = reservationService.make(reservation);
-        reservationEntity.setPerson(personEntity);
-       return ResponseEntity.ok(reservationEntity);
+
+        return ResponseEntity.ok(reservationEntity);
 
     }
 

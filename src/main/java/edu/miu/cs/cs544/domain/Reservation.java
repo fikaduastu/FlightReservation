@@ -26,11 +26,19 @@ public class Reservation {
     @Column(name = "code", nullable = false, length = 6)
     private String code;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reservation_id")
+    @ManyToOne
+    @JoinColumn(name = "person_id",nullable = false)
     @JsonIgnore
     private Person person;
 
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Reservation_Ticket")
     private List<Ticket> tickets = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "reservations",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<FlightOffering> flightOfferings = new ArrayList<>();
+
+    public void addTicket(Ticket ticket){
+        tickets.add(ticket);
+    }
 }

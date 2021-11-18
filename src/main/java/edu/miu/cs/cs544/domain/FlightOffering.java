@@ -22,7 +22,7 @@ public class FlightOffering {
     @Column(name = "id")
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
@@ -31,9 +31,9 @@ public class FlightOffering {
     private Date flightDate;
 
 
-    @OneToMany
-    @JoinTable(name = "FlightOffering_Table")
-    private List<Ticket> tickets = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "Reservation_FlightOffering")
+    private List<Reservation> reservations = new ArrayList<>();
 
 
 //    public void addTicket(Ticket ticket){

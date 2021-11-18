@@ -32,25 +32,25 @@ public class FlightOfferingServiceImpl implements FlightOfferingService {
     }
 
     @Override
-    public FlightOffering addFlightOffering(FlightOfferingDTO offeringdto) {
-        FlightOffering entity = new FlightOffering();
-        if (offeringdto != null) {
-            Flight flight = repository.findFlightByNumber(offeringdto.getFlight().getNumber());
-            if (flight != null) {
-                entity.setFlight(flight);
-                entity.setFlightDate(offeringdto.getFlightDate());
-                List<Ticket> tickets = offeringdto.getTickets();
-                for (Ticket ticket : tickets) {
-                    Ticket ticket1 = ticketService.findTicketByNumber(ticket.getNumber());
-                    entity.getTickets().add(ticket1);
-                }
-                return repository.save(entity);
-            }
-            return null;
-        }
-        return null;
+    public FlightOffering addFlightOffering(FlightOffering offeringdto) {
+//        FlightOffering entity = new FlightOffering();
+//        if (offeringdto != null) {
+//            Flight flight = repository.findFlightByNumber(offeringdto.getFlight().getNumber());
+//            if (flight != null) {
+//                entity.setFlight(flight);
+//                entity.setFlightDate(offeringdto.getFlightDate());
+//                List<Ticket> tickets = offeringdto.getTickets();
+//                for (Ticket ticket : tickets) {
+//                    Ticket ticket1 = ticketService.findTicketByNumber(ticket.getNumber());
+//                    entity.getTickets().add(ticket1);
+//                }
+//                return repository.save(entity);
+//            }
+//            return null;
+//        }
+//        return null;
 
-
+        return repository.save(offeringdto);
     }
 
     @Override

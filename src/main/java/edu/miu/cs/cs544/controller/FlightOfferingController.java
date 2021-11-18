@@ -17,7 +17,7 @@ public class FlightOfferingController {
     private FlightOfferingService flightOfferingService;
 
     @PostMapping("/add")
-    public ResponseEntity<FlightOffering> add(@RequestBody FlightOfferingDTO flightOffering){
+    public ResponseEntity<FlightOffering> add(@RequestBody FlightOffering flightOffering){
 
         return ResponseEntity.ok(flightOfferingService.addFlightOffering(flightOffering));
     }

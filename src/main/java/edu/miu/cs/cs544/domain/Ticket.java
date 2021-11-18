@@ -37,10 +37,10 @@ public class Ticket {
 //    @Column(name = "Code",length = 6, nullable = true)
 //    private String ticketCode;
 
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "ticket_id")
-    private Reservation reservation;
+//    @ManyToOne
+//    @JsonIgnore
+//    @JoinColumn(name = "reservation_id")
+//    private Reservation reservation;
 
 
 }

@@ -17,5 +17,5 @@ import java.util.List;
 public class FlightOfferingDTO {
     private Date flightDate;
     private Flight flight;
-    private List<Ticket> tickets = new ArrayList<>();
+    //private List<Ticket> tickets = new ArrayList<>();
 }
